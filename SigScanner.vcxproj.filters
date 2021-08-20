@@ -30,7 +30,7 @@
     <ClInclude Include="handle.h">
       <Filter>Header Files\Memory</Filter>
     </ClInclude>
-    <ClInclude Include="mem.h">
+    <ClInclude Include="sig_scanner.h">
       <Filter>Header Files\Memory</Filter>
     </ClInclude>
     <ClInclude Include="module.h">

@@ -91,6 +91,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -156,7 +158,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="all.h" />
-    <ClInclude Include="mem.h" />
+    <ClInclude Include="sig_scanner.h" />
     <ClInclude Include="fwddec.h" />
     <ClInclude Include="handle.h" />
     <ClInclude Include="module.h" />

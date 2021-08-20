@@ -6,9 +6,9 @@ namespace memory
 	module::module(HMODULE mod) :
 		range(mod, 0)
 	{
-		auto dosHeader = m_base.as<IMAGE_DOS_HEADER*>();
-		auto ntHeader = m_base.add(dosHeader->e_lfanew).as<IMAGE_NT_HEADERS*>();
-		m_size = ntHeader->OptionalHeader.SizeOfImage;
+		auto dos_header = m_base.as<IMAGE_DOS_HEADER*>();
+		auto nt_header = m_base.add(dos_header->e_lfanew).as<IMAGE_NT_HEADERS*>();
+		m_size = nt_header->OptionalHeader.SizeOfImage;
 		m_mod_name = find_filename(mod);
 	}
 
@@ -17,13 +17,13 @@ namespace memory
 	{
 	}
 
-	module::module(std::string_view name) :
-		module(GetModuleHandleA(name.data()))
+	module::module(std::string_view mod_name) :
+		module(GetModuleHandleA(mod_name.data()))
 	{	
 	}
 
-	module::module(std::wstring_view name) :
-		module(GetModuleHandleW(name.data()))
+	module::module(std::wstring_view mod_name) :
+		module(GetModuleHandleW(mod_name.data()))
 	{
 	}
 
@@ -35,10 +35,8 @@ namespace memory
 	TCHAR* module::find_filename(HMODULE mod)
 	{
 		TCHAR buf[MAX_PATH] = { 0 };
-		DWORD bufSize = sizeof(buf) / sizeof(*buf);
-		if (GetModuleFileName(mod, buf, bufSize) != bufSize)
-			return PathFindFileName(buf);
-		else
-			return reinterpret_cast<TCHAR*>("dummyname.exe");
+		DWORD buf_size = sizeof(buf) / sizeof(*buf);
+		GetModuleFileName(mod, buf, buf_size);
+	    return PathFindFileName(buf);
 	}
 }

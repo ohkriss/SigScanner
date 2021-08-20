@@ -11,16 +11,16 @@ namespace memory
 		explicit pattern_batch() = default;
 		~pattern_batch() noexcept = default;
 
-		void add(std::string name, pattern pattern, std::function<void(memory::handle)> callback);
+		void add(std::string name, pattern pattern, std::function<void(handle)> callback);
 		void run(range region, bool report_found = true);
 
 		struct entry
 		{
 			std::string m_name;
 			pattern m_pattern;
-			std::function<void(memory::handle)> m_callback;
+			std::function<void(handle)> m_callback;
 
-			explicit entry(std::string name, pattern pattern, std::function<void(memory::handle)> callback) :
+			explicit entry(std::string name, pattern pattern, std::function<void(handle)> callback) :
 				m_name(name),
 				m_pattern(pattern),
 				m_callback(callback)

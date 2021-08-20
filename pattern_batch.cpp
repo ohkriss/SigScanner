@@ -20,7 +20,7 @@ namespace memory
 				if (entry.m_callback)
 				{
 					if (report_found)
-						std::cout << "[SigScanner] Found '" << entry.m_name << "' " << region.mod_name() << HEX_TO_UPPER(result.as<uintptr_t>() - region.begin().as<uintptr_t>());
+						std::cout << "[SigScanner] Found '" << entry.m_name << "' " << *region.mod_name() << "+" << HEX_TO_UPPER(result.as<uintptr_t>() - region.begin().as<uintptr_t>());
 					 
 					std::invoke(entry.m_callback, result);
 				}

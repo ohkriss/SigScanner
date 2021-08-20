@@ -51,7 +51,7 @@ namespace memory
 			}
 		};
 
-		for (std::size_t i = 0; i < ida_sig.size(); ++i)
+		for (std::size_t i = 0; i < ida_sig.size(); i++)
 		{
 			if (ida_sig[i] == ' ')
 				continue;
@@ -79,7 +79,7 @@ namespace memory
 
 	pattern::pattern(const void* bytes, std::string_view mask)
 	{
-		for (std::size_t i = 0; i < mask.size(); ++i)
+		for (std::size_t i = 0; i < mask.size(); i++)
 		{
 			if (mask[i] != '?')
 				m_bytes.emplace_back(static_cast<const std::uint8_t*>(bytes)[i]);
