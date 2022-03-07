@@ -1,4 +1,3 @@
-#include "all.h"
 #include "range.h"
 #include "pattern.h"
 

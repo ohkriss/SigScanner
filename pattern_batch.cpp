@@ -15,6 +15,7 @@ namespace memory
 		bool all_found = true;
 		for (auto& entry : m_entries)
 		{
+			bool entry_found = true;
 			if (auto result = region.scan(entry.m_pattern))
 			{
 				if (entry.m_callback)
@@ -27,14 +28,18 @@ namespace memory
 				else
 				{
 					all_found = false;
-					std::cout << "[SigScanner] Failed to find '" << entry.m_name << "'.";
+					entry_found = false;
 				}
 			}
 			else
 			{
 				all_found = false;
-				std::cout << "[SigScanner] Failed to find '" << entry.m_name << "'.";
+				entry_found = false;
 			}
+
+			if (!entry_found)
+				std::cout << "[SigScanner] Failed to find '" << entry.m_name << "'.";
+
 		}
 
 		m_entries.clear();
